@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { HighlightElementDirective } from './directive/highlight-element.directive';
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
+import { ProductService } from './service/product.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { ProductItemComponent } from './product-list/product-item/product-item.c
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
