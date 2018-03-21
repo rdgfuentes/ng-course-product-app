@@ -39,14 +39,21 @@ export class ProductService {
     return this._products;
   }
 
+  add(product: IProduct) {
+    this.http.post( PRODUCTS_API, product )
+      .subscribe(
+        ( response ) => this.loadProducts(),
+        ( error ) => console.error( 'There was a problem adding the product', error)
+      );
+  }
+
   delete(index: number) {
     const product: IProduct = this._products.splice(index, 1).shift();
     this.http.delete( [PRODUCTS_API, product.id].join('/') )
       .subscribe(
         ( response ) => this.loadProducts(),
-        ( error ) => console.error( 'There was a problem trying to delete the product', error)
+        ( error ) => console.error( 'There was a problem deleting the product', error)
       );
-
   }
 
 }

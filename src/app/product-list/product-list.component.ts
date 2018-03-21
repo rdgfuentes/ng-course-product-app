@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IProduct } from '../model/iproduct';
 import { ProductService } from '../service/product.service';
 
@@ -9,6 +9,9 @@ import { ProductService } from '../service/product.service';
 })
 export class ProductListComponent implements OnInit {
   public products: IProduct[] = [];
+
+  public newProduct: IProduct = { id: null, name: '', description: '', imageUrl: ''};
+
   constructor( private productService: ProductService) {
     // this.products = this.productService.products;
     this.productService.productObservable$
@@ -22,4 +25,14 @@ export class ProductListComponent implements OnInit {
     this.productService.delete(index);
   }
 
+  add(title: string, description: string) {
+    this.productService.add(
+      {
+        id: this.products.length + 1,
+        name: title,
+        description: description,
+        imageUrl: '//st.depositphotos.com/1605004/1559/v/950/depositphotos_15599555-stock-illustration-new-item-stamp.jpg'
+      }
+    ) ;
+  }
 }

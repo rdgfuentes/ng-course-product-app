@@ -7,3 +7,7 @@
   *ngFor="let prod of products; let index = index;"
   ></app-product-item>
 </div>
+
+<input placeholder="Title" #title><br>
+<input placeholder="Description" #description><br>
+<button (click)="add(title.value, description.value);">Add Product</button><br>
