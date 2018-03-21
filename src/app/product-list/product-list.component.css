@@ -4,3 +4,8 @@ ul {
 li {
     list-style: none;
 }
+.product-list-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

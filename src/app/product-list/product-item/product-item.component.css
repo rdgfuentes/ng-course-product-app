@@ -1,13 +1,13 @@
 div {
     width: 200px;
-    float: left;
+    height: 260px;
     border: 1px solid lightgray;
     margin: 0 0 1em 1em;
     padding: 1em;
 }
 img {
     width: 180px;
-    max-height: 180px;
+    height: 180px;
     overflow: hidden;
 }
 h1 {
