@@ -1,7 +1,5 @@
 <ul>
-  <li *ngFor="let prod of products" appHighlightElement>
-    <img [src]="prod.imageUrl">
-    <h1>{{prod.name}}</h1>
-    <h2>{{prod.description}}</h2>
+  <li *ngFor="let prod of products">
+    <app-product-item [product]="prod"></app-product-item>
   </li>
 </ul>
