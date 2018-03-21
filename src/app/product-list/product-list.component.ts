@@ -16,4 +16,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
   }
 
+  delete(index: number) {
+    this.productService.delete(index);
+  }
+
 }

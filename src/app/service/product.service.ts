@@ -68,4 +68,7 @@ export class ProductService {
     return this._products;
   }
 
+  delete(index: number) {
+    this._products.splice(index, 1);
+  }
 }

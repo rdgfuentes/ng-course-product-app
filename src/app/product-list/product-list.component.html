@@ -1,8 +1,9 @@
 <div class="product-list-container">
 <app-product-item 
+  (click)="delete(index)"
   [title]="prod.name"
   [subtitle]="prod.description"
   [image]="prod.imageUrl"
-  *ngFor="let prod of products"
+  *ngFor="let prod of products; let index = index;"
   ></app-product-item>
 </div>
