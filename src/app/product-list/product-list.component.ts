@@ -9,8 +9,10 @@ import { ProductService } from '../service/product.service';
 })
 export class ProductListComponent implements OnInit {
   public products: IProduct[] = [];
-  constructor( public productService: ProductService) {
+  constructor( private productService: ProductService) {
     // this.products = this.productService.products;
+    this.productService.productObservable
+      .subscribe( (products: IProduct[]) => this.products = products);
    }
 
   ngOnInit() {
