@@ -11,7 +11,7 @@ export class ProductListComponent implements OnInit {
   public products: IProduct[] = [];
   constructor( private productService: ProductService) {
     // this.products = this.productService.products;
-    this.productService.productObservable
+    this.productService.productObservable$
       .subscribe( (products: IProduct[]) => this.products = products);
    }
 
