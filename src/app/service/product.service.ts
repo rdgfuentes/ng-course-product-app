@@ -6,9 +6,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+const PRODUCTS_API: string = '//localhost:3000/products';
+
 @Injectable()
 export class ProductService {
-  private endpoint: string = '//localhost:3000/products';
   private _products: IProduct[] = [];
 
   private _productsSubject: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>([]);
@@ -20,7 +21,7 @@ export class ProductService {
 
   private loadProducts() {
     // using generics to define the returning type of the response
-    this.http.get<IProduct[]>(this.endpoint)
+    this.http.get<IProduct[]>(PRODUCTS_API)
       .subscribe(
         (response) => {
           this.setProducts(response);
@@ -40,13 +41,12 @@ export class ProductService {
 
   delete(index: number) {
     const product: IProduct = this._products.splice(index, 1).shift();
-    this.http.delete( [this.endpoint, product.id].join('/') )
+    this.http.delete( [PRODUCTS_API, product.id].join('/') )
       .subscribe(
         ( response ) => this.loadProducts(),
         ( error ) => console.error( 'There was a problem trying to delete the product', error)
       );
 
   }
-
 
 }
