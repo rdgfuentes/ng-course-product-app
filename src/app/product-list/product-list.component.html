@@ -1,5 +1,6 @@
-<ul>
-  <li *ngFor="let prod of products">
-    <app-product-item [product]="prod"></app-product-item>
-  </li>
-</ul>
+<app-product-item 
+  [title]="prod.name"
+  [subtitle]="prod.description"
+  [image]="prod.imageUrl"
+  *ngFor="let prod of products"
+  ></app-product-item>

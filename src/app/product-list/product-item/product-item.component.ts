@@ -8,7 +8,9 @@ import { IProduct } from '../../model/iproduct';
 })
 export class ProductItemComponent implements OnInit {
 
-  @Input('product') product: IProduct;
+  @Input('title') title: string;
+  @Input('subtitle') subtitle: string;
+  @Input('image') image: string;
   constructor() { }
 
   ngOnInit() {
