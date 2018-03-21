@@ -4,6 +4,6 @@
   [title]="prod.name"
   [subtitle]="prod.description"
   [image]="prod.imageUrl"
-  *ngFor="let prod of products; let index = index;"
+  *ngFor="let prod of productService.products; let index = index;"
   ></app-product-item>
 </div>
