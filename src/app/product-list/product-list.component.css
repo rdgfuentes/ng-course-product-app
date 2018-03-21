@@ -9,9 +9,6 @@ li {
     margin: 0 0 1em 1em;
     padding: 1em;
 }
-li:hover {
-    border: 1px solid gray;
-}
 img {
     width: 180px;
     max-height: 180px;
