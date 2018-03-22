@@ -4,7 +4,6 @@ import { IProduct } from './model/iproduct';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
-// @Injectable()
 export class CartService {
 
   private cart: ICartProduct[];
@@ -27,11 +26,22 @@ export class CartService {
   }
 
   delete( product: IProduct ) {
-    const item = this.cart.find( x => x.product.id === product.id);
+    let index: number;
+    const item = this.cart.find( (x, i) => {
+      if ( x.product.id === product.id ) {
+        index = i;
+        return true;
+      }
+      return false;
+    });
     if ( !item ) {
       this.cartSubject.error('Product can not be removed from cart because it was not found in it');
     }
     item.quantity -= 1;
+    if ( item.quantity <= 0) {
+      this.cart.splice(index, 1);
+    }
+
     this.cartSubject.next(this.cart);
   }
 }

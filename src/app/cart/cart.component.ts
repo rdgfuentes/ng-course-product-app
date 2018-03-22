@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ICartProduct } from '../model/icart-product';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  cart: ICartProduct[] = [];
+  constructor(
+    public cartService: CartService
+  ) {
+    this.cartService.cart$.subscribe(cart => this.cart = cart );
+  }
 
   ngOnInit() {
   }
 
+  delete( item: ICartProduct) {
+    this.cartService.delete( item.product );
+  }
 }

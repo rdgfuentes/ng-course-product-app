@@ -22,6 +22,9 @@ const appRoutes: Routes = [
     path: 'products/:productId', component: ProductViewComponent
   },
   {
+    path: 'cart', component: CartComponent
+  },
+  {
     path: '', redirectTo: 'products', pathMatch: 'full'
   }
 ];

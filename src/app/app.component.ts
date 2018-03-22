@@ -19,6 +19,7 @@ export class AppComponent {
   }
 
   countItemsInCart() {
-    return this.cart.map( x => x.quantity).reduce( (x, y) => x + y);
+    const q = this.cart.length > 0 ? this.cart.map( x => x.quantity).reduce( (x, y) => x + y) : 0;
+    return q;
   }
 }
