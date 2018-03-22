@@ -1,6 +1,6 @@
 <div class="product-list-container">
 <app-product-item 
-  (click)="delete(index)"
+  (click)="delete(prod.id)"
   [title]="prod.name"
   [subtitle]="prod.description"
   [image]="prod.imageUrl"

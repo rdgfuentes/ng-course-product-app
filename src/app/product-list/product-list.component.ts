@@ -13,16 +13,20 @@ export class ProductListComponent implements OnInit {
   public newProduct: IProduct = { id: null, name: '', description: '', imageUrl: ''};
 
   constructor( private productService: ProductService) {
-    // this.products = this.productService.products;
     this.productService.productObservable$
-      .subscribe( (products: IProduct[]) => this.products = products);
+      .subscribe(
+        (products: IProduct[]) => this.products = products,
+        (error) => {
+          console.log('Error Loading Product List', error);
+        }
+      );
    }
 
   ngOnInit() {
   }
 
-  delete(index: number) {
-    this.productService.delete(index);
+  delete(id: number) {
+    this.productService.delete(id);
   }
 
   add(title: string, description: string) {

@@ -47,11 +47,13 @@ export class ProductService {
       );
   }
 
-  delete(index: number) {
-    const product: IProduct = this._products.splice(index, 1).shift();
-    this.http.delete( [PRODUCTS_API, product.id].join('/') )
+  delete(id: number) {
+    this.http.delete( [PRODUCTS_API, id].join('/') )
       .subscribe(
-        ( response ) => this.loadProducts(),
+        ( response ) => {
+          console.log('Product Deleted', response);
+          this.loadProducts();
+        },
         ( error ) => console.error( 'There was a problem deleting the product', error)
       );
   }
