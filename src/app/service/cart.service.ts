@@ -25,7 +25,7 @@ export class CartService {
     this.cartSubject.next(this.cart);
   }
 
-  delete( product: IProduct ) {
+  delete( product: IProduct, quantity: number = 1 ) {
     let index: number;
     const item = this.cart.find( (x, i) => {
       if ( x.product.id === product.id ) {
@@ -37,7 +37,7 @@ export class CartService {
     if ( !item ) {
       this.cartSubject.error('Product can not be removed from cart because it was not found in it');
     }
-    item.quantity -= 1;
+    item.quantity -= quantity;
     if ( item.quantity <= 0) {
       this.cart.splice(index, 1);
     }

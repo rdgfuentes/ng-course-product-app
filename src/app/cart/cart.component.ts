@@ -20,6 +20,14 @@ export class CartComponent implements OnInit {
   }
 
   delete(item: ICartProduct) {
+    this.cartService.delete( item.product, item.quantity );
+  }
+
+  minus(item: ICartProduct) {
     this.cartService.delete( item.product );
+  }
+
+  plus(item: ICartProduct) {
+    this.cartService.add( item.product );
   }
 }

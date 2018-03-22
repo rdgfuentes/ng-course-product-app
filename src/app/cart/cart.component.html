@@ -9,7 +9,11 @@
   <tr *ngFor="let item of cart">
     <td><img [src]="item.product.imageUrl"/></td>
     <td>{{item.product.name}}</td>
-    <td>{{item.quantity}}</td>
+    <td>
+      <button (click)="minus(item)">-</button>
+      &nbsp;{{item.quantity}}&nbsp;
+      <button (click)="plus(item)">+</button>      
+    </td>
     <td><button (click)="delete(item)">x</button></td>
   </tr>
 </table>
