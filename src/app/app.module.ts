@@ -9,10 +9,14 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { HighlightElementDirective } from './directive/highlight-element.directive';
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
 import { ProductService } from './service/product.service';
+import { ProductViewComponent } from './product-view/product-view.component';
 
 const appRoutes: Routes = [
   {
     path: 'products', component: ProductListComponent
+  },
+  {
+    path: 'products/:productId', component: ProductViewComponent
   },
   {
     path: '', redirectTo: 'products', pathMatch: 'full'
@@ -24,7 +28,8 @@ const appRoutes: Routes = [
     AppComponent,
     ProductListComponent,
     HighlightElementDirective,
-    ProductItemComponent
+    ProductItemComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule,

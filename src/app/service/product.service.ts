@@ -58,4 +58,8 @@ export class ProductService {
       );
   }
 
+  get(id: number): Observable<IProduct> {
+    // using generics to define the returning type of the response
+    return this.http.get<IProduct>([PRODUCTS_API, id].join('/'));
+  }
 }
