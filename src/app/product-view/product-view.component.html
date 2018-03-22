@@ -1,11 +1,13 @@
 <div class="product-view-container">
   <div>
-    <img [src]="product.imageUrl">
+    <img [src]="product?.imageUrl">
   </div>
   <div>
-    <h1>{{product.name}}</h1>
-    <h2>{{product.description}}</h2>
+    <h1>{{product?.name}}</h1>
+    <h2>{{product?.description}}</h2>
     <br>
+    <button (click)="buy()">Buy</button>
+    <br>    
     <button [routerLink]="['/products']">Go Back to Shop</button>
   </div>
 </div>

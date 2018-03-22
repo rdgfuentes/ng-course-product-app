@@ -1,6 +1,6 @@
-<header [routerLink]="['/']">Shop</header>
+<header [routerLink]="['/']">Shop (In Cart: {{countItemsInCart()}})</header>
 <router-outlet></router-outlet>
 
 <pre>
-{{productService.products | json}}
+{{cart| json}}
 </pre>

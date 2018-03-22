@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from './service/product.service';
+import { CartService } from './cart.service';
+import { ICartProduct } from './model/icart-product';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,15 @@ import { ProductService } from './service/product.service';
 })
 export class AppComponent {
   title = 'app';
+  cart: ICartProduct[] = [];
   constructor(
-    public productService: ProductService
-  ) {}
+    public productService: ProductService,
+    public cartService: CartService
+  ) {
+    this.cartService.cart$.subscribe(cart => this.cart = cart );
+  }
+
+  countItemsInCart() {
+    return this.cart.map( x => x.quantity).reduce( (x, y) => x + y);
+  }
 }

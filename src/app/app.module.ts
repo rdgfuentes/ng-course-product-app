@@ -10,6 +10,9 @@ import { HighlightElementDirective } from './directive/highlight-element.directi
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
 import { ProductService } from './service/product.service';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { CartComponent } from './cart/cart.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { CartService } from './cart.service';
 
 const appRoutes: Routes = [
   {
@@ -29,14 +32,16 @@ const appRoutes: Routes = [
     ProductListComponent,
     HighlightElementDirective,
     ProductItemComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    CartComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ProductService],
+  providers: [ProductService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
