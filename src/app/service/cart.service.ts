@@ -6,28 +6,38 @@ import { Observable } from 'rxjs/Observable';
 
 export class CartService {
 
-  private cart: ICartProduct[];
+  private _cart: ICartProduct[];
+  private get cart(): ICartProduct[] {
+    return this._cart;
+  }
+  private set cart(cart: ICartProduct[]) {
+    this._cart = cart;
+    localStorage.setItem('cart', JSON.stringify(this._cart) );
+    this.cartSubject.next(this._cart);
+  }
 
   private cartSubject: BehaviorSubject<ICartProduct[]> = new BehaviorSubject<ICartProduct[]>([]);
   public cart$: Observable<ICartProduct[]> = this.cartSubject.asObservable();
 
   constructor() {
-    this.cart = [];
+    this.cart = localStorage.cart ? JSON.parse(localStorage.cart) : [];
   }
 
   add( product: IProduct ) {
     let item = this.cart.find( x => x.product.id === product.id);
     if ( !item ) {
-      item = { quantity: 0, product };
-      this.cart.push(item);
+      item = { quantity: 1, product };
+      this.cart = [...this.cart, item];
+    } else {
+      item.quantity += 1;
+      this.cart = this.cart;
     }
-    item.quantity += 1;
-    this.cartSubject.next(this.cart);
   }
 
   delete( product: IProduct, quantity: number = 1 ) {
     let index: number;
-    const item = this.cart.find( (x, i) => {
+    const cart: ICartProduct[] = this.cart;
+    const item = cart.find( (x, i) => {
       if ( x.product.id === product.id ) {
         index = i;
         return true;
@@ -39,9 +49,8 @@ export class CartService {
     }
     item.quantity -= quantity;
     if ( item.quantity <= 0) {
-      this.cart.splice(index, 1);
+      cart.splice(index, 1);
     }
-
-    this.cartSubject.next(this.cart);
+    this.cart = cart;
   }
 }
