@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from './service/product.service';
-import { CartService } from './cart.service';
+import { CartService } from './service/cart.service';
 import { ICartProduct } from './model/icart-product';
 
 @Component({
@@ -11,6 +11,7 @@ import { ICartProduct } from './model/icart-product';
 export class AppComponent {
   title = 'app';
   cart: ICartProduct[] = [];
+  displayCart: boolean =  false;
   constructor(
     public productService: ProductService,
     public cartService: CartService
@@ -21,5 +22,9 @@ export class AppComponent {
   countItemsInCart() {
     const q = this.cart.length > 0 ? this.cart.map( x => x.quantity).reduce( (x, y) => x + y) : 0;
     return q;
+  }
+
+  toggleCart() {
+    this.displayCart = !this.displayCart;
   }
 }

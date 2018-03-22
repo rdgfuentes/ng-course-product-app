@@ -12,7 +12,7 @@ import { ProductService } from './service/product.service';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
-import { CartService } from './cart.service';
+import { CartService } from './service/cart.service';
 
 const appRoutes: Routes = [
   {

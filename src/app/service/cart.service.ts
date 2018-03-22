@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ICartProduct } from './model/icart-product';
-import { IProduct } from './model/iproduct';
+import { ICartProduct } from '../model/icart-product';
+import { IProduct } from '../model/iproduct';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 

@@ -1,7 +1,13 @@
 <header>
     <span [routerLink]="['/']">Shop</span> 
     <span [routerLink]="['/cart']">(In Cart: {{countItemsInCart()}} )</span>
+    <span (click)="toggleCart()">{{ displayCart ? "hide" : "show"}}</span>
 </header>
+<div *ngIf="displayCart">
+    <app-cart></app-cart>
+    <hr/>
+</div>
+
 <router-outlet></router-outlet>
 
 <pre>

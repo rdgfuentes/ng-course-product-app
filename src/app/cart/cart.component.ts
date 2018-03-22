@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICartProduct } from '../model/icart-product';
-import { CartService } from '../cart.service';
+import { CartService } from '../service/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
   }
 
-  delete( item: ICartProduct) {
+  delete(item: ICartProduct) {
     this.cartService.delete( item.product );
   }
 }
