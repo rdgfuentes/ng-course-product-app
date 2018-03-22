@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
@@ -9,6 +10,14 @@ import { HighlightElementDirective } from './directive/highlight-element.directi
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
 import { ProductService } from './service/product.service';
 
+const appRoutes: Routes = [
+  {
+    path: 'products', component: ProductListComponent
+  },
+  {
+    path: '', redirectTo: 'products', pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +28,8 @@ import { ProductService } from './service/product.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
