@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IProduct } from '../model/iproduct';
 import { ProductService } from '../service/product.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-product-add',
@@ -9,12 +10,10 @@ import { ProductService } from '../service/product.service';
 })
 export class ProductAddComponent implements OnInit {
 
-  public newProduct: IProduct = { id: null, name: '', description: '', imageUrl: ''};
   public loading: boolean;
-  private maxProductId: number;
 
-  public title: string = '';
-  public description: string = '';
+  @ViewChild('myForm')
+  myForm: NgForm;
 
   constructor( private productService: ProductService) {
     this.productService.loading$
@@ -23,18 +22,14 @@ export class ProductAddComponent implements OnInit {
       });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  private isFormValid(): boolean {
-    return !!(this.title && this.description);
-  }
-
-  add(title: string, description: string) {
-    if ( this.isFormValid() ) {
+  add() {
+    if ( this.myForm.valid ) {
       this.productService.add(
         {
-          name: title,
-          description: description,
+          name: this.myForm.value.title,
+          description: this.myForm.value.description,
           imageUrl: '//st.depositphotos.com/1605004/1559/v/950/depositphotos_15599555-stock-illustration-new-item-stamp.jpg'
         }
       );

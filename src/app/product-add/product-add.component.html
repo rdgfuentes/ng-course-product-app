@@ -1,11 +1,17 @@
-<input placeholder="Title" [(ngModel)]="title"> 
-<input placeholder="Description" [(ngModel)]="description"> 
-<button (click)="add(title, description);"
-  [disabled]="loading || !isFormValid()"> 
+<form #myForm="ngForm" >
+  <span class="error" *ngIf="myForm.controls['title']?.invalid">*</span>
+  <input placeholder="Title" name="title" ngModel required> 
+
+  <span class="error" *ngIf="myForm.controls['description']?.invalid">*</span>
+  <input placeholder="Description" name="description" ngModel required> 
+
+  <button (click)="add();"
+  [disabled]="loading || !myForm.valid "> 
   <span *ngIf="!loading">Add Product</span>
   <app-loading 
     *ngIf="loading"
     [height]="'20px'" 
     [width]="'20px'">
   </app-loading>
-</button>
+  </button>
+</form>
