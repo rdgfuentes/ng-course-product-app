@@ -5,27 +5,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { HighlightElementDirective } from './directive/highlight-element.directive';
-import { ProductItemComponent } from './product-list/product-item/product-item.component';
-import { ProductService } from './service/product.service';
-import { ProductViewComponent } from './product-view/product-view.component';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartService } from './service/cart.service';
-import { LoadingComponent } from './common/loading/loading.component';
-import { ProductAddComponent } from './product-add/product-add.component';
 import { HomeComponent } from './home/home.component';
+import { ProductModule } from './product/product.module';
+import { CoreModule } from './core/core.module';
 
 const appRoutes: Routes = [
   {
     path: '', component: HomeComponent
-  },
-  {
-    path: 'products', component: ProductListComponent
-  },
-  {
-    path: 'products/:productId', component: ProductViewComponent
   },
   {
     path: 'cart', component: CartComponent
@@ -35,22 +24,22 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ProductListComponent,
-    HighlightElementDirective,
-    ProductItemComponent,
-    ProductViewComponent,
     CartComponent,
     CartItemComponent,
-    LoadingComponent,
-    ProductAddComponent,
     HomeComponent
   ],
   imports: [
+    CoreModule,
     BrowserModule,
     HttpClientModule,
+    ProductModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ProductService, CartService],
-  bootstrap: [AppComponent]
+  providers: [
+    CartService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
 export class HighlightElementDirective {
 
   @HostBinding('style.box-shadow') boxShadow;
-  
+
   constructor() { }
 
   @HostListener('mouseenter')
