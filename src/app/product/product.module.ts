@@ -22,12 +22,10 @@ const moduleRoutes: Routes = [
     ProductListComponent,
     ProductItemComponent,
     ProductViewComponent,
-    ProductAddComponent,
   ],
   exports: [
     ProductListComponent,
     ProductViewComponent,
-    ProductAddComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +33,6 @@ const moduleRoutes: Routes = [
     RouterModule.forChild(moduleRoutes)
   ],
   providers: [
-    ProductService,
   ]
 })
 export class ProductModule { }

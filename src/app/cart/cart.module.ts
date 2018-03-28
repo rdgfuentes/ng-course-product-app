@@ -27,6 +27,5 @@ const moduleRoutes: Routes = [
   providers: [
     CartService,
   ],
-  
 })
 export class CartModule { }
