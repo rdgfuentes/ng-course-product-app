@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/do';
 
 const PRODUCTS_API = '//localhost:3000/products';
 
@@ -72,6 +73,9 @@ export class ProductService {
   get(id: number): Observable<IProduct> {
     this._loadingSubject.next(true);
     // using generics to define the returning type of the response
-    return this.http.get<IProduct>([PRODUCTS_API, id].join('/')).delay(1000);
+    return this.http.get<IProduct>([PRODUCTS_API, id].join('/'))
+      .delay(1000)
+      .do((product) => this._loadingSubject.next(false))
+      ;
   }
 }

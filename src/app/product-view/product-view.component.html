@@ -1,12 +1,17 @@
-<div class="product-view-container">
+<app-loading 
+  *ngIf="loading"
+  [height]="'200px'" 
+  [width]="'200px'">
+  </app-loading>
+<div class="product-view-container" >
   <div>
-    <img [src]="product?.imageUrl">
+    <img *ngIf="product" [src]="product?.imageUrl">
   </div>
   <div>
     <h1>{{product?.name}}</h1>
     <h2>{{product?.description}}</h2>
     <br>
-    <button (click)="buy()">Buy</button>
+    <button (click)="buy()" [disabled]="loading">Buy</button>
     <br>    
     <button [routerLink]="['/products']">Go Back to Shop</button>
   </div>

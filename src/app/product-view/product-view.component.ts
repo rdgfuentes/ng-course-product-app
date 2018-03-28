@@ -14,6 +14,7 @@ export class ProductViewComponent implements OnInit {
   // @Input('productId') productId: number;
 
   public product: IProduct;
+  public loading: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -28,6 +29,10 @@ export class ProductViewComponent implements OnInit {
             this.product = product;
           });
       });
+      this.productService.loading$
+        .subscribe( loading => {
+          this.loading = loading;
+        });
   }
 
   ngOnInit() {
