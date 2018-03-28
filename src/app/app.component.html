@@ -17,14 +17,14 @@
         [routerLinkActiveOptions]="{ exact: true }"
         class="link"
         >(In Cart: {{cartCount}} )</a>
-    <span (click)="toggleCart()">{{ displayCart ? "hide" : "show"}}</span>
+    <!-- <span (click)="toggleCart()">{{ displayCart ? "hide" : "show"}}</span> -->
 
     <app-product-add></app-product-add>
 </header>
-<div *ngIf="displayCart">
+<!-- <div *ngIf="displayCart">
     <app-cart></app-cart>
     <hr/>
-</div>
+</div> -->
 
 <router-outlet></router-outlet>
 
