@@ -7,13 +7,22 @@ import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductService } from '../service/product.service';
 import { CoreModule } from '../core/core.module';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductIdGuard } from '../guard/product-id.guard';
+import { ProductResolver } from '../product.resolver';
 
 const moduleRoutes: Routes = [
   {
     path: '', component: ProductListComponent
   },
   {
-    path: ':productId', component: ProductViewComponent
+    path: ':productId',
+    component: ProductViewComponent,
+    canActivate: [
+      ProductIdGuard
+    ],
+    resolve: {
+      product: ProductResolver
+    }
   },
 ];
 
@@ -33,6 +42,8 @@ const moduleRoutes: Routes = [
     RouterModule.forChild(moduleRoutes)
   ],
   providers: [
+    ProductIdGuard,
+    ProductResolver,
   ]
 })
 export class ProductModule { }

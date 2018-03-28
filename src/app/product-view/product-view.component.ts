@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from '../service/product.service';
 import { IProduct } from '../model/iproduct';
 import { CartService } from '../service/cart.service';
+import { Subscriber } from 'rxjs/Subscriber';
 
 @Component({
   selector: 'app-product-view',
@@ -21,14 +22,21 @@ export class ProductViewComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService
   ) {
-    this.activatedRoute.params
-      .subscribe((params: Params) => {
-        const { productId } = params;
-        this.productService.get( productId )
-          .subscribe( (product: IProduct) => {
-            this.product = product;
-          });
+
+    this.activatedRoute.data
+      .subscribe( (data) => {
+        console.log(data);
+        this.product = data.product;
       });
+
+    // this.activatedRoute.params
+    //   .subscribe((params: Params) => {
+    //     const { productId } = params;
+    //     this.productService.get( productId )
+    //       .subscribe( (product: IProduct) => {
+    //         this.product = product;
+    //       });
+    //   });
       this.productService.loading$
         .subscribe( loading => {
           this.loading = loading;

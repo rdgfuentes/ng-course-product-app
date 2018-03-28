@@ -7,6 +7,9 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/do';
+// import 'rxjs/add/operator/of';
+import 'rxjs/add/operator/mapTo';
+import 'rxjs/add/operator/catch';
 
 const PRODUCTS_API = '//localhost:3000/products';
 
@@ -78,6 +81,23 @@ export class ProductService {
     return this.http.get<IProduct>([PRODUCTS_API, id].join('/'))
       .delay(1000)
       .do( _ => this._loadingSubject.next(false))
+      ;
+  }
+
+  exist(id: number): Observable<boolean | {}> {
+    this._loadingSubject.next(true);
+    // using generics to define the returning type of the response
+    return this.http.head<boolean>([PRODUCTS_API, id].join('/'))
+      .do( _ => this._loadingSubject.next(false))
+      .catch( e => {
+        return Observable.of(false);
+      })
+
+      // .mapTo(true)
+      // .catch((error) => {
+      //     console.log(error);
+      //     return Observable.of(false);
+      // })
       ;
   }
 }
