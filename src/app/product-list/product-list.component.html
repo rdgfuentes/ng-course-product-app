@@ -1,16 +1,18 @@
 <div class="product-list-container">
     <app-loading 
       *ngIf="loading"
-      [height]="'100px'" 
-      [width]="'100px'">
+      [height]="'240px'" 
+      [width]="'240px'">
     </app-loading>
-<app-product-item 
-  (delete)="delete(prod.id)"
-  [routerLink]="[prod.id]"
-  [title]="prod.name"
-  [subtitle]="prod.description"
-  [image]="prod.imageUrl"
-  *ngFor="let prod of products; let index = index;"
-  ></app-product-item>
+    <div *ngIf="!loading">
+      <app-product-item 
+        (delete)="delete(prod.id)"
+        [routerLink]="[prod.id]"
+        [title]="prod.name"
+        [subtitle]="prod.description"
+        [image]="prod.imageUrl"
+        *ngFor="let prod of products; let index = index;"
+        ></app-product-item>
+    </div>
 </div>
 
