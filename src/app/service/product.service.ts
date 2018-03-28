@@ -29,6 +29,7 @@ export class ProductService {
     // using generics to define the returning type of the response
     this.http.get<IProduct[]>(PRODUCTS_API)
       .delay(1000)
+      .do( _ => this._loadingSubject.next(false))
       .subscribe(
         (response) => {
           this.setProducts(response);
@@ -40,7 +41,6 @@ export class ProductService {
   private setProducts(products: IProduct[]) {
     this._products = products;
     this._productsSubject.next(this._products);
-    this._loadingSubject.next(false);
   }
 
   get products(): IProduct[] {
@@ -51,6 +51,7 @@ export class ProductService {
     this._loadingSubject.next(true);
     this.http.post( PRODUCTS_API, product )
       .delay(1000)
+      .do( _ => this._loadingSubject.next(false))
       .subscribe(
         ( response ) => this.loadProducts(),
         ( error ) => console.error( 'There was a problem adding the product', error)
@@ -61,6 +62,7 @@ export class ProductService {
     this._loadingSubject.next(true);
     this.http.delete( [PRODUCTS_API, id].join('/') )
       .delay(1000)
+      .do( _ => this._loadingSubject.next(false))
       .subscribe(
         ( response ) => {
           console.log('Product Deleted', response);
@@ -75,7 +77,7 @@ export class ProductService {
     // using generics to define the returning type of the response
     return this.http.get<IProduct>([PRODUCTS_API, id].join('/'))
       .delay(1000)
-      .do((product) => this._loadingSubject.next(false))
+      .do( _ => this._loadingSubject.next(false))
       ;
   }
 }
