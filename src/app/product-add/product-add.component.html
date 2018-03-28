@@ -1,7 +1,7 @@
-<input placeholder="Title" #title> 
-<input placeholder="Description" #description> 
-<button (click)="add(title.value, description.value);"
-  [disabled]="loading"> 
+<input placeholder="Title" [(ngModel)]="title"> 
+<input placeholder="Description" [(ngModel)]="description"> 
+<button (click)="add(title, description);"
+  [disabled]="loading || !isFormValid()"> 
   <span *ngIf="!loading">Add Product</span>
   <app-loading 
     *ngIf="loading"

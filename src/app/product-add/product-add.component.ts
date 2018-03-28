@@ -13,6 +13,9 @@ export class ProductAddComponent implements OnInit {
   public loading: boolean;
   private maxProductId: number;
 
+  public title: string = '';
+  public description: string = '';
+
   constructor( private productService: ProductService) {
     this.productService.loading$
       .subscribe( loading => {
@@ -22,13 +25,19 @@ export class ProductAddComponent implements OnInit {
 
   ngOnInit() {}
 
+  private isFormValid(): boolean {
+    return !!(this.title && this.description);
+  }
+
   add(title: string, description: string) {
-    this.productService.add(
-      {
-        name: title,
-        description: description,
-        imageUrl: '//st.depositphotos.com/1605004/1559/v/950/depositphotos_15599555-stock-illustration-new-item-stamp.jpg'
-      }
-    );
+    if ( this.isFormValid() ) {
+      this.productService.add(
+        {
+          name: title,
+          description: description,
+          imageUrl: '//st.depositphotos.com/1605004/1559/v/950/depositphotos_15599555-stock-illustration-new-item-stamp.jpg'
+        }
+      );
+    }
   }
 }
