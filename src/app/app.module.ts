@@ -14,6 +14,7 @@ const appRoutes: Routes = [
   {path: 'products', loadChildren: './product/product.module#ProductModule'},
   {path: 'home', loadChildren: './home/home.module#HomeModule'},
   {path: 'cart', loadChildren: './cart/cart.module#CartModule'},
+  {path: 'checkout', loadChildren: './cart/cart.module#CartModule'},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 

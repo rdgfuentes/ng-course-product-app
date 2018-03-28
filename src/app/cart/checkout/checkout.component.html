@@ -1,0 +1,25 @@
+<form class="checkout-form" [formGroup]="myForm">
+  <input type="text" formControlName="fullName" placeholder="Full Name"/>
+  <input type="text" formControlName="address" placeholder="Address"/>
+
+  <div class="form-group">
+    <input type="text" formControlName="zipCode" placeholder="Zip Code"/>
+    <span class="error" 
+      *ngIf="myForm.get('zipCode')?.touched && myForm.get('zipCode')?.hasError('zipCodeInvalid')"
+      >Zip code is out of range, must be between 10000 and 99999</span>
+    <span class="error" 
+      *ngIf="myForm.get('zipCode')?.touched && myForm.get('zipCode')?.hasError('required')"
+      >Zip code is required</span>
+  </div>
+
+  <input type="text" formControlName="country" placeholder="Country"/>
+  <div class="radio-input">
+
+    <label for="female">Female</label>
+    <input type="radio" name="gender" formControlName="gender" id="female" value="f">
+
+    <label for="male">Male</label>
+    <input type="radio" name="gender" formControlName="gender" id="male" value="m">
+  </div>
+  <button (click)="submit()">Submit</button>
+</form>

@@ -1,0 +1,19 @@
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+.checkout-form input {
+    width: 30%;
+    margin-bottom: 2em;
+}
+.radio-input {
+    display: flex;
+    flex-direction: row;
+    margin-right: 2em;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
