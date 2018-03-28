@@ -15,8 +15,12 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartService } from './service/cart.service';
 import { LoadingComponent } from './common/loading/loading.component';
 import { ProductAddComponent } from './product-add/product-add.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
+  {
+    path: '', component: HomeComponent
+  },
   {
     path: 'products', component: ProductListComponent
   },
@@ -26,9 +30,6 @@ const appRoutes: Routes = [
   {
     path: 'cart', component: CartComponent
   },
-  {
-    path: '', redirectTo: 'products', pathMatch: 'full'
-  }
 ];
 
 @NgModule({
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     CartComponent,
     CartItemComponent,
     LoadingComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

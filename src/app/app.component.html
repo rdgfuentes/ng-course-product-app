@@ -1,6 +1,22 @@
 <header>
-    <span [routerLink]="['/']">Shop</span> 
-    <span [routerLink]="['/cart']">(In Cart: {{cartCount}} )</span>
+    <a 
+        [routerLink]="['/']" 
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link"
+        >Home</a> 
+    <a 
+        [routerLink]="['/products']" 
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link"
+        >Shop</a> 
+    <a 
+        [routerLink]="['/cart']" 
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="link"
+        >(In Cart: {{cartCount}} )</a>
     <span (click)="toggleCart()">{{ displayCart ? "hide" : "show"}}</span>
 
     <app-product-add></app-product-add>
