@@ -13,6 +13,7 @@ import { ProductViewComponent } from './product-view/product-view.component';
 import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartService } from './service/cart.service';
+import { LoadingComponent } from './common/loading/loading.component';
 
 const appRoutes: Routes = [
   {
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     ProductItemComponent,
     ProductViewComponent,
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { ProductService } from '../service/product.service';
 })
 export class ProductListComponent implements OnInit {
   public products: IProduct[] = [];
+  public loading: boolean;
 
   public newProduct: IProduct = { id: null, name: '', description: '', imageUrl: ''};
 
@@ -20,6 +21,10 @@ export class ProductListComponent implements OnInit {
           console.log('Error Loading Product List', error);
         }
       );
+      this.productService.loading$
+        .subscribe( loading => {
+          this.loading = loading;
+        });
    }
 
   ngOnInit() {

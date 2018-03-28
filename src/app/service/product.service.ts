@@ -5,8 +5,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/delay';
 
-const PRODUCTS_API: string = '//localhost:3000/products';
+const PRODUCTS_API = '//localhost:3000/products';
 
 @Injectable()
 export class ProductService {
@@ -15,13 +16,18 @@ export class ProductService {
   private _productsSubject: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>([]);
   public productObservable$: Observable<IProduct[]> = this._productsSubject.asObservable();
 
+  private _loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public loading$: Observable<boolean> = this._loadingSubject.asObservable();
+
   constructor( private http: HttpClient) {
     this.loadProducts();
   }
 
   private loadProducts() {
+    this._loadingSubject.next(true);
     // using generics to define the returning type of the response
     this.http.get<IProduct[]>(PRODUCTS_API)
+      .delay(2000)
       .subscribe(
         (response) => {
           this.setProducts(response);
@@ -33,6 +39,7 @@ export class ProductService {
   private setProducts(products: IProduct[]) {
     this._products = products;
     this._productsSubject.next(this._products);
+    this._loadingSubject.next(false);
   }
 
   get products(): IProduct[] {
@@ -40,6 +47,7 @@ export class ProductService {
   }
 
   add(product: IProduct) {
+    this._loadingSubject.next(true);
     this.http.post( PRODUCTS_API, product )
       .subscribe(
         ( response ) => this.loadProducts(),
@@ -48,6 +56,7 @@ export class ProductService {
   }
 
   delete(id: number) {
+    this._loadingSubject.next(true);
     this.http.delete( [PRODUCTS_API, id].join('/') )
       .subscribe(
         ( response ) => {
@@ -59,6 +68,7 @@ export class ProductService {
   }
 
   get(id: number): Observable<IProduct> {
+    this._loadingSubject.next(true);
     // using generics to define the returning type of the response
     return this.http.get<IProduct>([PRODUCTS_API, id].join('/'));
   }
