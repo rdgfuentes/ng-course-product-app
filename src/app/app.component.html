@@ -2,6 +2,8 @@
     <span [routerLink]="['/']">Shop</span> 
     <span [routerLink]="['/cart']">(In Cart: {{cartCount}} )</span>
     <span (click)="toggleCart()">{{ displayCart ? "hide" : "show"}}</span>
+
+    <app-product-add></app-product-add>
 </header>
 <div *ngIf="displayCart">
     <app-cart></app-cart>

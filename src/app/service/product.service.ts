@@ -27,7 +27,7 @@ export class ProductService {
     this._loadingSubject.next(true);
     // using generics to define the returning type of the response
     this.http.get<IProduct[]>(PRODUCTS_API)
-      .delay(2000)
+      .delay(1000)
       .subscribe(
         (response) => {
           this.setProducts(response);
@@ -49,6 +49,7 @@ export class ProductService {
   add(product: IProduct) {
     this._loadingSubject.next(true);
     this.http.post( PRODUCTS_API, product )
+      .delay(1000)
       .subscribe(
         ( response ) => this.loadProducts(),
         ( error ) => console.error( 'There was a problem adding the product', error)
@@ -58,6 +59,7 @@ export class ProductService {
   delete(id: number) {
     this._loadingSubject.next(true);
     this.http.delete( [PRODUCTS_API, id].join('/') )
+      .delay(1000)
       .subscribe(
         ( response ) => {
           console.log('Product Deleted', response);
@@ -70,6 +72,6 @@ export class ProductService {
   get(id: number): Observable<IProduct> {
     this._loadingSubject.next(true);
     // using generics to define the returning type of the response
-    return this.http.get<IProduct>([PRODUCTS_API, id].join('/'));
+    return this.http.get<IProduct>([PRODUCTS_API, id].join('/')).delay(1000);
   }
 }

@@ -1,0 +1,11 @@
+<input placeholder="Title" #title> 
+<input placeholder="Description" #description> 
+<button (click)="add(title.value, description.value);"
+  [disabled]="loading"> 
+  <span *ngIf="!loading">Add Product</span>
+  <app-loading 
+    *ngIf="loading"
+    [height]="'20px'" 
+    [width]="'20px'">
+  </app-loading>
+</button>

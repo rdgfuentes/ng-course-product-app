@@ -14,6 +14,7 @@ import { CartComponent } from './cart/cart.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartService } from './service/cart.service';
 import { LoadingComponent } from './common/loading/loading.component';
+import { ProductAddComponent } from './product-add/product-add.component';
 
 const appRoutes: Routes = [
   {
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     ProductViewComponent,
     CartComponent,
     CartItemComponent,
-    LoadingComponent
+    LoadingComponent,
+    ProductAddComponent
   ],
   imports: [
     BrowserModule,
