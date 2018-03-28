@@ -5,38 +5,26 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { CartComponent } from './cart/cart.component';
-import { CartItemComponent } from './cart/cart-item/cart-item.component';
-import { CartService } from './service/cart.service';
-import { HomeComponent } from './home/home.component';
 import { ProductModule } from './product/product.module';
 import { CoreModule } from './core/core.module';
+import { HomeModule } from './home/home.module';
+import { CartModule } from './cart/cart.module';
 
-const appRoutes: Routes = [
-  {
-    path: '', component: HomeComponent
-  },
-  {
-    path: 'cart', component: CartComponent
-  },
-];
+const appRoutes: Routes = [];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CartComponent,
-    CartItemComponent,
-    HomeComponent
   ],
   imports: [
-    CoreModule,
     BrowserModule,
     HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+
+    // My App Modules
     ProductModule,
-    RouterModule.forRoot(appRoutes)
-  ],
-  providers: [
-    CartService
+    HomeModule,
+    CartModule,
   ],
   bootstrap: [
     AppComponent
